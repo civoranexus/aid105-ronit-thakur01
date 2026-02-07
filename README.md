@@ -1,133 +1,116 @@
-# 🚀 CivoraX Internship Program 2025-26
+# SchemeAssist - Government Schemes Recommendation System
 
-<p align="center">
-  <img src="https://internship.civoranexus.com/CivoraX.png" alt="CivoraX Logo" width="200"/>
-</p>
+An AI-powered web application that recommends government welfare schemes based on user profiles. Built with a **Python Flask backend** and **vanilla HTML/CSS/JavaScript frontend**.
 
-<p align="center">
-  <strong>Launch your tech career with real projects, expert mentorship, and industry-recognized certification</strong>
-</p>
-
-
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Duration-5%20Weeks-blue" alt="Duration"/>
-  <img src="https://img.shields.io/badge/Start%20Date-Jan%205%2C%202026-green" alt="Start Date"/>
-  <img src="https://img.shields.io/badge/End%20Date-Feb%208%2C%202026-orange" alt="End Date"/>
-  <img src="https://img.shields.io/badge/Mode-Remote--First-purple" alt="Mode"/>
-</p>
-
----
-
-## 📊 Program Statistics
-
-| Metric | Value |
-|--------|-------|
-| 🎓 Interns Trained | 300+ |
-| 💼 Live Projects | 20 |
-| ⏱️ Program Duration | 5 Weeks |
-
----
-
-
-## 📅 Program Details
-
-| Detail | Information |
-|--------|-------------|
-| **Duration** | 5-week intensive program |
-| **Dates** | January 5 - February 8, 2026 |
-| **Format** | Remote-first with live sessions and workshops |
-| **Structure** | Real-time project work with weekly milestones |
-
----
-
-## ✅ Eligibility Criteria
-
-- ✔️ Students from **any year or degree program**
-- ✔️ Recent graduates and **career switchers** welcome
-- ✔️ **Basic programming knowledge** required
-- ✔️ Strong **passion for technology** and learning
-
----
-
-## 🛠️ Technologies You'll Master
-
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | React, Next.js |
-| **Backend** | Node.js, Python |
-| **Advanced** | AI & Machine Learning |
-| **Infrastructure** | Cloud & DevOps |
-| **Mobile** | Cross-platform Development |
-| **Database** | SQL & NoSQL Systems |
-| **APIs** | RESTful & GraphQL |
-| **Workflow** | Agile & Git |
-
----
-
-## 📋 Application Process
+## 📋 Project Structure
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   01. Register  │───▶│  02. Team       │───▶│  03. Receive    │
-│   Online        │    │  Review         │    │  Confirmation   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+aid105-ronit-thakur01/
+├── backend/                 # Python Flask API
+│   ├── app.py               # Main Flask application
+│   └── requirements.txt      # Python dependencies
+├── static/                  # Frontend files
+│   └── index.html           # Complete HTML/CSS/JS frontend
+├── data/                    # Data files
+│   └── schemes.json         # Government schemes database
+├── docs/                    # Documentation
+├── resources/               # Additional resources
+└── README.md                # This file
 ```
 
-1. **📝 Register Online** - Complete your application form with details and preferences
-2. **🔍 CivoraX Team Review** - Our team reviews your application and qualifications
-3. **✉️ Eligibility Email** - Receive confirmation email if selected
+## 🚀 Quick Start
 
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
 
+### 1. Install Python Dependencies
 
+```bash
+cd backend
+pip install -r requirements.txt
+```
 
-## 📞 Contact Information
+### 2. Run the Flask Backend
 
-| Channel | Details |
-|---------|---------|
-| 📧 **Email** | [contact@civoranexus.com](mailto:contact@civoranexus.com) |
-| 📱 **Phone** | [+91 7350675192](tel:+917350675192) |
-| 📍 **Location** | 422605, Sangamner, Maharashtra, India |
+```bash
+cd backend
+python app.py
+```
 
-### 🔗 Social Links
+The backend will start at `http://localhost:5000`
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-CivoraX-blue?style=flat&logo=linkedin)](https://www.linkedin.com/company/civoranexus)
-[![Instagram](https://img.shields.io/badge/Instagram-CivoraX-E4405F?style=flat&logo=instagram)](https://www.instagram.com/civoranexus)
-[![Twitter](https://img.shields.io/badge/Twitter-CivoraX-1DA1F2?style=flat&logo=twitter)](https://twitter.com/civoranexus)
-[![YouTube](https://img.shields.io/badge/YouTube-CivoraX-FF0000?style=flat&logo=youtube)](https://www.youtube.com/@civoranexus)
+### 3. Open the Frontend
+
+Open the static HTML file in your browser:
+```bash
+# Navigate to: static/index.html and open in your browser
+```
+
+## 🎯 Features
+
+- **70+ Government Schemes**: Comprehensive database of central and state schemes
+- **AI-Powered Matching**: Intelligent eligibility calculation based on age, income, state, and category
+- **Personalized Recommendations**: Get schemes ranked by eligibility score
+- **Real-time Analysis**: Instant recommendations with detailed explanations
+- **Mobile Responsive**: Works on desktop, tablet, and mobile devices
+- **No Installation Required**: Frontend is pure HTML/CSS/JavaScript
+
+## 📊 Scheme Categories
+
+Agriculture • Education • Health • Housing • Business • Women Welfare • Senior Citizen • Skill Development • Social Security • Food Security
+
+## 🔌 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/recommend` | Get scheme recommendations |
+| GET | `/api/categories` | Get all categories |
+| GET | `/api/states` | Get all states |
+| GET | `/api/schemes` | Get all schemes |
+| GET | `/health` | Health check |
+
+## 💡 How It Works
+
+1. **User Input**: Enter your state, age, annual income, and preferred category
+2. **AI Analysis**: Backend analyzes eligibility against 70+ schemes
+3. **Scoring**: Each scheme gets a score (0-100) based on eligibility
+4. **Recommendations**: Ranked schemes with eligibility reasons and alerts
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Backend | Python Flask |
+| Frontend | HTML5, CSS3, Vanilla JavaScript |
+| Data | JSON |
+| Communication | REST API |
+
+## 📝 Customization
+
+### Adding New Schemes
+Edit `data/schemes.json` and add new scheme objects.
+
+### Modifying Eligibility Logic
+Edit the `calculate_eligibility_score()` function in `backend/app.py`.
+
+### Styling the Frontend
+All CSS is embedded in `static/index.html` - modify the `<style>` tag.
+
+## ⚠️ Important Notes
+
+- This system provides **AI-based recommendations** only
+- Always verify eligibility on official government portals
+- Consult with CSC (Common Service Center) for final confirmations
+- Schemes and eligibility criteria are subject to change
+
+## 📄 License
+
+This project is licensed under the MIT License - see LICENSE file for details.
 
 ---
 
-## 🏢 About Civora Nexus
-
-**Civora Nexus Pvt. Ltd.** is a technology company empowering communities through innovative civic and healthcare technology solutions.
-
-### Company Services:
-- 🔄 Digital Transformation for Businesses
-- 🏘️ Smart Community & Enterprise Solutions
-- 💡 Affordable Tech Solutions
-- 📊 Data Analytics & Business Insights
-- 🎓 Innovation & Skill Development
-- 🤖 AI & Automation Solutions
-
----
-
-## 📚 Quick Links
-
-- 🌐 [Official Website](https://civoranexus.com/)
-- 📋 [Internship Portal](https://civoranexus.com/internships)
-- 🔐 [Certificate Verification](https://internship.civoranexus.com)
-- 📄 [Privacy Policy](https://civoranexus.com/privacy-policy)
-- 📜 [Terms of Service](https://civoranexus.com/terms-and-conditions)
-
-
-
-<p align="center">
-  <strong>© 2025 Civora Nexus Pvt. Ltd. All rights reserved.</strong>
-</p>
-
-<p align="center">
-  Made with ❤️ by CivoraX Team
-</p>
+**Last Updated**: February 2024
+**Database**: 70+ active schemes covering 25+ states
 
 

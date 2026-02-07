@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchemeAssist AI - Find Government Schemes You're Eligible For</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 50px;
+        }
+
+        .logo img {
+            display: block;
+            height: 100%;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover { color: white; }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-sign {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-sign:hover {
+            background: white;
+            color: #1e3a5f;
+        }
+
+        .btn-primary {
+            background: #16a34a;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,30 Q300,60 600,30 T1200,30 L1200,120 L0,120 Z" fill="%23f8f9fa"/></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-section h1 .highlight {
+            color: #5eead4;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions button {
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-start {
+            background: white;
+            color: #2d5a8c;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-browse {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-browse:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d5a8c;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin: 60px 0;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title .badge {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-title h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .form-title p {
+            color: #6b7280;
+        }
+
+        .form-group-container {
+            margin-bottom: 30px;
+        }
+
+        .form-group-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .form-group-title .icon {
+            font-size: 1.3rem;
+        }
+
+        .form-rows {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+
+        .form-section button {
+            width: 100%;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .form-section button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.3);
+        }
+
+        .form-section button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin: 60px 0;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .results-title h2 {
+            font-size: 2rem;
+            color: #1f2937;
+        }
+
+        .results-count {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .scheme-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-color: #16a34a;
+        }
+
+        .scheme-card-header {
+            background: #f3f4f6;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .scheme-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            flex: 1;
+        }
+
+        .eligibility-badge {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 70px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .scheme-card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scheme-meta {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .scheme-badge {
+            background: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .scheme-badge.central {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .scheme-badge.state {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .scheme-badge.new {
+            background: #ddd6fe;
+            color: #6d28d9;
+        }
+
+        .scheme-benefits {
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .scheme-alert {
+            background: #fef2f2;
+            border-left: 3px solid #ef4444;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #7f1d1d;
+        }
+
+        .scheme-alert.success {
+            background: #f0fdf4;
+            border-left-color: #16a34a;
+            color: #15803d;
+        }
+
+        .scheme-button {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            margin-top: auto;
+        }
+
+        .scheme-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.3);
+        }
+
+        /* Features Section */
+        .features-section {
+            margin: 80px 0;
+            padding: 60px 0;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: #f0fdf4;
+        }
+
+        .feature-card:nth-child(1) .feature-icon { background: #dbeafe; }
+        .feature-card:nth-child(2) .feature-icon { background: #fef3c7; }
+        .feature-card:nth-child(3) .feature-icon { background: #f0fdf4; }
+        .feature-card:nth-child(4) .feature-icon { background: #ddd6fe; }
+        .feature-card:nth-child(5) .feature-icon { background: #fed7aa; }
+        .feature-card:nth-child(6) .feature-icon { background: #dbeafe; }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8c 100%);
+            color: white;
+            padding: 60px 20px 0;
+            margin-top: 80px;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-about {
+            display: flex;
+            gap: 20px;
+        }
+
+        .company-logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .company-logo img {
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-info h4 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .company-info p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .urn {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
+        .footer-links, .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #16a34a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        /* Auth Modals */
+        .auth-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            backdrop-filter: blur(4px);
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .auth-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .auth-modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-modal-header h2 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .auth-modal-header p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .auth-form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1f2937;
+            font-size: 0.95rem;
+        }
+
+        .auth-form-group input {
+            padding: 12px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .auth-form-group input:focus {
+            outline: none;
+            border-color: #2d5a8c;
+            box-shadow: 0 0 0 3px rgba(45, 90, 140, 0.1);
+        }
+
+        .auth-submit-btn {
+            background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 140, 0.3);
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .auth-toggle a {
+            color: #2d5a8c;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .auth-toggle a:hover {
+            color: #1e7e8a;
+            text-decoration: underline;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #1f2937;
+        }
+
+        /* Category Details Modal */
+        .category-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            backdrop-filter: blur(4px);
+            padding: 20px;
+        }
+
+        .category-modal.active {
+            display: flex;
+        }
+
+        .category-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .category-modal-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+        }
+
+        .category-title {
+            flex: 1;
+        }
+
+        .category-title h2 {
+            font-size: 1.8rem;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .category-title p {
+            color: #6b7280;
+        }
+
+        .category-details-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .category-details-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .category-details-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-details-list strong {
+            color: #1f2937;
+        }
+
+        .category-action-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .category-action-btns button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-explore-cat {
+            background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%);
+            color: white;
+        }
+
+        .btn-explore-cat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 140, 0.3);
+        }
+
+        .btn-close-cat {
+            background: #f3f4f6;
+            color: #1f2937;
+            border: 1px solid #e5e7eb;
+        }
+
+        .btn-close-cat:hover {
+            background: #e5e7eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .form-rows {
+                grid-template-columns: 1fr;
+            }
+
+            .schemes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-section,
+            .results-section {
+                padding: 30px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+
+            footer .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-about {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .footer-bottom-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span style="font-size: 1.3rem; font-weight: bold; color: white; display: flex; align-items: center; gap: 8px;">🏛️ Civora Nexus</span>
+            </a>
+            <nav>
+                <a href="#explore">Explore</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+            </nav>
+            <div class="header-buttons">
+                <button class="btn-sign" onclick="openSignInModal()">Sign In</button>
+                <button class="btn-primary" onclick="scrollToForm()">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>AI-Powered • 70+ Schemes • Instant Results</span>
+            </div>
+            <h1>Find Government Schemes<br><span class="highlight">You're Eligible For</span></h1>
+            <p>Discover which schemes you qualify for based on your demographics, income, and other eligibility criteria</p>
+            <div class="hero-actions">
+                <button class="btn-start" onclick="scrollToForm()">Get Started →</button>
+                <button class="btn-browse" onclick="document.getElementById('explore').scrollIntoView({behavior: 'smooth'})">Browse All Schemes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Government Schemes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">28</span>
+                <span class="stat-label">States & UTs</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Accuracy Rate</span>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section" id="formSection">
+            <div class="form-title">
+                <span class="badge">AI Powered Analysis</span>
+                <h2>Tell Us About Yourself</h2>
+                <p>Fill in your details to receive personalized scheme recommendations based on your eligibility criteria</p>
+            </div>
+
+            <form id="schemeForm" onsubmit="handleSubmit(event)">
+                <!-- Citizen Profile -->
+                <div class="form-group-container">
+                    <div class="form-group-title">
+                        <span class="icon">👤</span>
+                        <span>Citizen Profile</span>
+                    </div>
+                    <div class="form-rows">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="0" max="120" placeholder="Your age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category" required>
+                                <option value="">Choose a category...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Details -->
+                <div class="form-group-container">
+                    <div class="form-group-title">
+                        <span class="icon">📍</span>
+                        <span>Location Details</span>
+                    </div>
+                    <div class="form-rows">
+                        <div class="form-group">
+                            <label for="state">Select State</label>
+                            <select id="state" name="state" required>
+                                <option value="">Choose a state...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal">Postal Code</label>
+                            <input type="text" id="postal" name="postal" placeholder="Enter postal code">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economic Details -->
+                <div class="form-group-container">
+                    <div class="form-group-title">
+                        <span class="icon">💰</span>
+                        <span>Economic Details</span>
+                    </div>
+                    <div class="form-rows">
+                        <div class="form-group">
+                            <label for="occupation">Occupation</label>
+                            <select id="occupation" name="occupation">
+                                <option value="">Select occupation</option>
+                                <option value="Farmer">Farmer</option>
+                                <option value="Student">Student</option>
+                                <option value="Business">Business Owner</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Retired">Retired</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="income">Annual Income (₹)</label>
+                            <input type="number" id="income" name="income" min="0" placeholder="Enter annual income" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="familysize">Family Size</label>
+                            <select id="familysize" name="familysize">
+                                <option value="">Select family size</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6+">6+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">✓ Find Eligible Schemes</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <div class="results-title">
+                    <h2>Your Eligible Schemes</h2>
+                    <p class="results-count" id="resultsCount"></p>
+                </div>
+                <button class="reset-button" onclick="resetForm()">← Back to Form</button>
+            </div>
+            <div id="resultsContainer"></div>
+        </div>
+
+        <!-- Explore Section -->
+        <section class="explore-section" id="explore">
+            <div class="section-title">
+                <h2>Browse All Schemes</h2>
+                <p>Explore the complete database of 500+ government schemes across categories and states</p>
+            </div>
+            <div class="explore-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px;">
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Agriculture', '👨‍🌾')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">👨‍🌾</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Agriculture</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Farming subsidies and agricultural support programs</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Education', '🎓')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🎓</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Education</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Scholarships, grants, and educational assistance</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Financial', '💰')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">💰</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Financial</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Loans, credit schemes, and financial assistance</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Health', '🏥')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🏥</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Health</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Healthcare coverage and wellness programs</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Employment', '👨‍💼')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">👨‍💼</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Employment</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Job training and employment support</p>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.08)'" onclick="showCategoryDetails('Social Welfare', '👩‍👧‍👦')">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">👩‍👧‍👦</div>
+                    <h3 style="margin-bottom: 10px; color: #1f2937;">Social Welfare</h3>
+                    <p style="color: #6b7280; line-height: 1.6;">Family support and social security programs</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <div class="section-title">
+                <h2>Why Choose SchemeAssist AI?</h2>
+                <p>Built with cutting-edge technology to make government welfare accessible to everyone</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Matching</h3>
+                    <p>Advanced algorithms ensure accurate eligibility matching across 500+ schemes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Data Privacy First</h3>
+                    <p>Your personal information is encrypted and never shared with third parties</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Updates</h3>
+                    <p>Scheme information updated regularly to ensure accuracy and availability</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Deadline Alerts</h3>
+                    <p>Never miss important application deadlines for eligible schemes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Complete Guidance</h3>
+                    <p>Step-by-step guidance on how to apply for each recommended scheme</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Multi-Language Support</h3>
+                    <p>Access SchemeAssist in multiple Indian languages for better understanding</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about" style="background: white; padding: 60px 20px; margin: 60px 0;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About SchemeAssist AI</h2>
+                    <p>Empowering Citizens Through Intelligent Innovation</p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: center;">
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: #1f2937; margin-bottom: 15px;">Our Mission</h3>
+                        <p style="color: #6b7280; line-height: 1.8; margin-bottom: 15px;">We believe that every citizen deserves access to government schemes that can improve their life. SchemeAssist AI uses cutting-edge artificial intelligence to bridge the gap between citizens and welfare programs.</p>
+                        <p style="color: #6b7280; line-height: 1.8;">Our platform analyzes your profile and matches it against 500+ government schemes across categories, making it simple to discover benefits you're eligible for.</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%); padding: 40px; border-radius: 12px; color: white;">
+                        <h3 style="margin-bottom: 20px;">Key Achievements</h3>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 1.8rem; font-weight: bold;">500+</div>
+                            <div>Schemes Indexed</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 1.8rem; font-weight: bold;">28</div>
+                            <div>States & UTs Covered</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold;">95%</div>
+                            <div>Accuracy Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-section footer-about">
+                <div class="company-logo" style="background: white; padding: 5px; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2rem;">🏛️</span></div>
+                <div class="company-info">
+                    <h4>Civora Nexus Pvt. Ltd. - Connecting Citizens Through Intelligent Innovation.</h4>
+                    <p>SchemeAssist AI is developed under the CivoraX Internship Program.</p>
+                    <p class="urn"><strong>URN: UDYAM-MH-01-0075817</strong></p>
+                </div>
+            </div>
+
+            <div class="footer-section footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#schemes">Browse Schemes</a></li>
+                    <li><a href="#check">Check Eligibility</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="mailto:info@civoranexus.com">📧 info@civoranexus.com</a></li>
+                    <li><a href="tel:+917350675192">📱 +91-7350 675192</a></li>
+                    <li><a href="#">📍 Sangamner, Maharashtra – 422605, India</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Civora Nexus Pvt. Ltd. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-box">
+            <div class="spinner"></div>
+            <p class="loading-text">Analyzing Your Profile...</p>
+            <p class="loading-subtext">Our AI is matching you against 500+ government schemes</p>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="auth-modal" id="signInModal">
+        <div class="auth-modal-content">
+            <button class="close-modal" onclick="closeSignInModal()">&times;</button>
+            <div class="auth-modal-header">
+                <h2>Sign In</h2>
+                <p>Welcome to SchemeAssist AI</p>
+            </div>
+            <form class="auth-form" onsubmit="handleSignIn(event)">
+                <div class="auth-form-group">
+                    <label for="signin-email">Email Address</label>
+                    <input type="email" id="signin-email" placeholder="Enter your email" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-submit-btn">Sign In</button>
+            </form>
+            <div class="auth-toggle">
+                Don't have an account? <a onclick="switchToSignUp()">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="auth-modal" id="signUpModal">
+        <div class="auth-modal-content">
+            <button class="close-modal" onclick="closeSignUpModal()">&times;</button>
+            <div class="auth-modal-header">
+                <h2>Create Account</h2>
+                <p>Join SchemeAssist AI Today</p>
+            </div>
+            <form class="auth-form" onsubmit="handleSignUp(event)">
+                <div class="auth-form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+            <div class="auth-toggle">
+                Already have an account? <a onclick="switchToSignIn()">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Details Modal -->
+    <div class="category-modal" id="categoryModal">
+        <div class="category-modal-content">
+            <div class="category-modal-header">
+                <div class="category-icon" id="categoryIcon"></div>
+                <div class="category-title">
+                    <h2 id="categoryName"></h2>
+                    <p id="categoryDesc"></p>
+                </div>
+            </div>
+            <div id="categoryDetails"></div>
+            <div class="category-action-btns">
+                <button class="btn-explore-cat" onclick="scrollToFormFromCategory()">Find Schemes for Me</button>
+                <button class="btn-close-cat" onclick="closeCategoryModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        // Fallback data - used if API is not available
+        const fallbackStates = [
+            'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 
+            'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 
+            'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 
+            'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 
+            'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+            'Andaman and Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli',
+            'Daman and Diu', 'Lakshadweep', 'Delhi', 'Puducherry', 'Ladakh', 'Jammu and Kashmir'
+        ];
+
+        const fallbackCategories = [
+            'General', 'OBC', 'SC/ST', 'EWS'
+        ];
+
+        // Initialize
+        async function init() {
+            await loadStates();
+            await loadCategories();
+        }
+
+        async function loadStates() {
+            console.log('📍 Loading states...');
+            try {
+                const response = await fetch(`${API_BASE}/states`, { timeout: 5000 });
+                
+                if (!response.ok) {
+                    throw new Error(`API returned status ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.states && Array.isArray(data.states)) {
+                    console.log('✅ States loaded from API:', data.states.length);
+                    populateStates(data.states);
+                } else {
+                    throw new Error('Invalid data format from API');
+                }
+            } catch (error) {
+                console.warn('⚠️ API Error - Using fallback states:', error.message);
+                populateStates(fallbackStates);
+            }
+        }
+
+        async function loadCategories() {
+            console.log('📋 Loading categories...');
+            try {
+                const response = await fetch(`${API_BASE}/categories`, { timeout: 5000 });
+                
+                if (!response.ok) {
+                    throw new Error(`API returned status ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.categories && Array.isArray(data.categories)) {
+                    console.log('✅ Categories loaded from API:', data.categories.length);
+                    populateCategories(data.categories);
+                } else {
+                    throw new Error('Invalid data format from API');
+                }
+            } catch (error) {
+                console.warn('⚠️ API Error - Using fallback categories:', error.message);
+                populateCategories(fallbackCategories);
+            }
+        }
+
+        function populateStates(states) {
+            const select = document.getElementById('state');
+            if (!select) {
+                console.error('❌ State dropdown not found in HTML');
+                return;
+            }
+            
+            // Clear existing options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+            
+            states.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                select.appendChild(option);
+            });
+            
+            console.log(`✅ Populated states dropdown with ${states.length} options`);
+        }
+
+        function populateCategories(categories) {
+            const select = document.getElementById('category');
+            if (!select) {
+                console.error('❌ Category dropdown not found in HTML');
+                return;
+            }
+            
+            // Clear existing options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+            
+            categories.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat;
+                option.textContent = cat;
+                select.appendChild(option);
+            });
+            
+            console.log(`✅ Populated categories dropdown with ${categories.length} options`);
+        }
+
+        function scrollToForm() {
+            document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const profile = {
+                state: document.getElementById('state').value,
+                age: parseInt(document.getElementById('age').value),
+                annualIncome: parseInt(document.getElementById('income').value),
+                category: document.getElementById('category').value
+            };
+
+            if (!profile.state || !profile.age || !profile.annualIncome || !profile.category) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            showLoading();
+            
+            try {
+                // Show success message and close loading after 2 seconds
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                hideLoading();
+                alert('✓ Your profile has been submitted successfully!\n\nYou will receive scheme recommendations via email within 24 hours.');
+                resetForm();
+            } catch (error) {
+                hideLoading();
+                alert('Error: ' + error.message);
+            }
+        }
+
+        function displayResults(report) {
+            hideLoading();
+            
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+            
+            const container = document.getElementById('resultsContainer');
+            const count = document.getElementById('resultsCount');
+            
+            if (report.recommendations.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 60px; color: #6b7280;"><h3>No matching schemes found</h3></div>';
+                count.textContent = '0 schemes found';
+                return;
+            }
+
+            count.textContent = `${report.recommendations.length} schemes found`;
+            
+            let html = '';
+            const grid = document.createElement('div');
+            grid.className = 'schemes-grid';
+
+            report.recommendations.forEach(rec => {
+                const scheme = rec.scheme;
+                const score = rec.eligibilityScore;
+                let alertHtml = '';
+                
+                if (rec.alerts && rec.alerts.length > 0) {
+                    rec.alerts.forEach(alert => {
+                        const cls = alert.type === 'perfect_match' ? 'success' : 'warning';
+                        alertHtml += `<div class="scheme-alert ${cls}">${alert.message}</div>`;
+                    });
+                }
+
+                const card = `
+                    <div class="scheme-card">
+                        <div class="scheme-card-header">
+                            <div class="scheme-name">${scheme.scheme_name}</div>
+                            <div class="eligibility-badge">${score}%</div>
+                        </div>
+                        <div class="scheme-card-body">
+                            <div class="scheme-meta">
+                                <span class="scheme-badge ${scheme.level === 'Central' ? 'central' : 'state'}">${scheme.level}</span>
+                                <span class="scheme-badge">${scheme.category}</span>
+                                ${scheme.is_new ? '<span class="scheme-badge new">New</span>' : ''}
+                            </div>
+                            ${alertHtml}
+                            <p><strong>Benefits:</strong> ${scheme.benefits}</p>
+                            <p><strong>Target:</strong> ${scheme.target_group}</p>
+                            <button class="scheme-button" onclick="alert('Visit official portal to apply')">View Details & Apply →</button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+
+            container.appendChild(grid);
+            document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function resetForm() {
+            document.getElementById('schemeForm').reset();
+            document.getElementById('resultsSection').classList.remove('active');
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Auth Modal Functions
+        function openSignInModal() {
+            document.getElementById('signInModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSignInModal() {
+            document.getElementById('signInModal').classList.remove('active');
+            document.getElementById('signin-email').value = '';
+            document.getElementById('signin-password').value = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openSignUpModal() {
+            document.getElementById('signUpModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSignUpModal() {
+            document.getElementById('signUpModal').classList.remove('active');
+            document.getElementById('signup-name').value = '';
+            document.getElementById('signup-email').value = '';
+            document.getElementById('signup-password').value = '';
+            document.getElementById('signup-confirm').value = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchToSignUp() {
+            closeSignInModal();
+            setTimeout(() => openSignUpModal(), 300);
+        }
+
+        function switchToSignIn() {
+            closeSignUpModal();
+            setTimeout(() => openSignInModal(), 300);
+        }
+
+        function handleSignIn(event) {
+            event.preventDefault();
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            if (email && password) {
+                alert('✓ Successfully signed in as ' + email + '!\n\nNote: This is a demo. In production, this would authenticate with your backend.');
+                closeSignInModal();
+            }
+        }
+
+        function handleSignUp(event) {
+            event.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirm) {
+                alert('⚠️ Passwords do not match!');
+                return;
+            }
+            
+            if (name && email && password) {
+                alert('✓ Account created successfully for ' + name + '!\n\nNote: This is a demo. In production, user data would be saved to your database.');
+                closeSignUpModal();
+                setTimeout(() => openSignInModal(), 300);
+            }
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const signInModal = document.getElementById('signInModal');
+            const signUpModal = document.getElementById('signUpModal');
+            const categoryModal = document.getElementById('categoryModal');
+            
+            if (event.target === signInModal) {
+                closeSignInModal();
+            }
+            if (event.target === signUpModal) {
+                closeSignUpModal();
+            }
+            if (event.target === categoryModal) {
+                closeCategoryModal();
+            }
+        });
+
+        // Category Details Functions
+        const categoryData = {
+            'Agriculture': {
+                description: 'Farming subsidies and agricultural support programs',
+                details: [
+                    '<strong>Pradhan Mantri Fasal Bima Yojana:</strong> Crop insurance scheme covering natural disasters',
+                    '<strong>PM-KISAN:</strong> Direct income support for farmers - ₹6000 per year',
+                    '<strong>Soil Health Card Scheme:</strong> Soil testing and nutrient management',
+                    '<strong>Kissan Credit Card:</strong> Easy credit access at reasonable rates',
+                    '<strong>Agricultural Infrastructure Fund:</strong> Investment in farm infrastructure',
+                    '<strong>Dairy Farming Support:</strong> Subsidy for dairy farmers and cattle'
+                ]
+            },
+            'Education': {
+                description: 'Scholarships, grants, and educational assistance',
+                details: [
+                    '<strong>National Scholarship Portal:</strong> Central and state scholarships for students',
+                    '<strong>Prime Minister\'s Scholarship Scheme:</strong> For wards of defence personnel',
+                    '<strong>Pradhan Mantri Vidya Lakshmi Scheme:</strong> Education loan with government guarantee',
+                    '<strong>Post Matric Scholarship:</strong> For SC/ST and OBC students',
+                    '<strong>INSPIRE Internship:</strong> Research internship opportunities for undergraduates',
+                    '<strong>Udyam Skill Development:</strong> Skill training and certification programs'
+                ]
+            },
+            'Financial': {
+                description: 'Loans, credit schemes, and financial assistance',
+                details: [
+                    '<strong>Pradhan Mantri MUDRA Yojana:</strong> Micro and small business loans up to ₹10 lakh',
+                    '<strong>Stand-Up India:</strong> Loans for first-time entrepreneurs',
+                    '<strong>PM SVANidhi:</strong> Street vendors development scheme',
+                    '<strong>SIDBI Loan Schemes:</strong> Subsidized loans for small industries',
+                    '<strong>Credit Guarantee Scheme:</strong> Government-backed credit guarantee coverage',
+                    '<strong>Atal Pension Yojana:</strong> Affordable pension for unorganized workers'
+                ]
+            },
+            'Health': {
+                description: 'Healthcare coverage and wellness programs',
+                details: [
+                    '<strong>Ayushman Bharat (PM-JAY):</strong> Health insurance coverage of ₹5 lakh per family',
+                    '<strong>Pradhan Mantri National Dialysis Program:</strong> Free dialysis for kidney patients',
+                    '<strong>Pradhan Mantri Swasthya Suraksha Yojana:</strong> Tertiary care health services',
+                    '<strong>Janani Shishu Suraksha Karyakram:</strong> Maternal and child health programs',
+                    '<strong>TB Mukt Bharat Abhiyaan:</strong> TB diagnosis and treatment assistance',
+                    '<strong>Integrated Child Development Services:</strong> Nutrition and health for children'
+                ]
+            },
+            'Employment': {
+                description: 'Job training and employment support',
+                details: [
+                    '<strong>PMKVY (Pradhan Mantri Kaushal Vikas Yojana):</strong> Free skill training for job-ready credentials',
+                    '<strong>National Apprenticeship Promotion Scheme:</strong> On-job training with stipend',
+                    '<strong>Employment Linked Incentive Program:</strong> Support for first-time job seekers',
+                    '<strong>NRLM (National Rural Livelihood Mission):</strong> Self-employment for rural poor',
+                    '<strong>DPI (Deen Dayal Upadhyaya Scheme):</strong> Livelihood source for BPL households',
+                    '<strong>Job Fair and Placement Portal:</strong> Job listing and placement assistance'
+                ]
+            },
+            'Social Welfare': {
+                description: 'Family support and social security programs',
+                details: [
+                    '<strong>Pradhan Mantri Jeevan Jyoti Bima Yojana:</strong> Life insurance for ₹330/year',
+                    '<strong>Pradhan Mantri Suraksha Bima Yojana:</strong> Accident insurance coverage',
+                    '<strong>Integrated Social Security Scheme:</strong> Pension and insurance for unorganized workers',
+                    '<strong>Indira Gandhi National Widow Pension Scheme:</strong> ₹300-500/month for widows',
+                    '<strong>Varishtha Pension Yojana:</strong> Pension for elderly citizens',
+                    '<strong>Indira Gandhi National Disability Pension:</strong> Support for disabled persons'
+                ]
+            }
+        };
+
+        function showCategoryDetails(category, icon) {
+            const data = categoryData[category];
+            if (!data) return;
+
+            document.getElementById('categoryIcon').textContent = icon;
+            document.getElementById('categoryName').textContent = category;
+            document.getElementById('categoryDesc').textContent = data.description;
+
+            const detailsHtml = '<ul class="category-details-list">' + 
+                data.details.map(detail => `<li>${detail}</li>`).join('') + 
+                '</ul>';
+            
+            document.getElementById('categoryDetails').innerHTML = detailsHtml;
+            document.getElementById('categoryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCategoryModal() {
+            document.getElementById('categoryModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function scrollToFormFromCategory() {
+            closeCategoryModal();
+            setTimeout(() => {
+                document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

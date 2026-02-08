@@ -47,14 +47,43 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             height: 50px;
+            padding: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            line-height: 1.1;
+        }
+
+        .logo-text-main {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            font-family: 'Georgia', 'Garamond', serif;
+        }
+
+        .logo-text-sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0.9;
+            letter-spacing: 1px;
         }
 
         .logo img {
             display: block;
-            height: 100%;
+            height: 45px;
             width: auto;
+            object-fit: contain;
         }
 
         nav {
@@ -120,8 +149,8 @@
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%);
-            color: white;
+            background: #ffffff;
+            color: #1a1a2e;
             padding: 80px 20px;
             text-align: center;
             position: relative;
@@ -187,6 +216,210 @@
             font-size: 1.1rem;
             margin-bottom: 30px;
             opacity: 0.95;
+        }
+
+        .hero-search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            justify-content: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-search-input {
+            flex: 1;
+            padding: 12px 18px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            color: #1a1a2e;
+        }
+
+        .hero-search-input:focus {
+            border-color: #1e7e8a;
+            box-shadow: 0 0 0 3px rgba(30, 126, 138, 0.1);
+        }
+
+        .hero-search-input::placeholder {
+            color: #999;
+        }
+
+        .hero-search-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #2d5a8c 0%, #1e7e8a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .hero-search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 126, 138, 0.3);
+        }
+
+        .hero-search-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(26, 26, 46, 0.1);
+            border: 2px solid rgba(26, 26, 46, 0.2);
+            color: #1a1a2e;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 50;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(26, 26, 46, 0.15);
+            border-color: rgba(26, 26, 46, 0.3);
+            transform: scale(1.1) rotate(20deg);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode header {
+            background: linear-gradient(135deg, #0f2744 0%, #1a4d6d 100%);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .hero-section {
+            background: linear-gradient(135deg, #1a3a4a 0%, #0d4a5a 100%);
+        }
+
+        body.dark-mode .form-section,
+        body.dark-mode .stat-card,
+        body.dark-mode .feature-card,
+        body.dark-mode .scheme-card {
+            background: #2d2d44;
+            color: #e0e0e0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .form-title h2,
+        body.dark-mode .section-title h2,
+        body.dark-mode .feature-card h3,
+        body.dark-mode .scheme-card .scheme-name {
+            color: #ffffff;
+        }
+
+        body.dark-mode .form-group label,
+        body.dark-mode .form-title p,
+        body.dark-mode .section-title p,
+        body.dark-mode .feature-card p,
+        body.dark-mode .scheme-card p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode input,
+        body.dark-mode select {
+            background: #3d3d54;
+            color: #e0e0e0;
+            border-color: #4d4d64;
+        }
+
+        body.dark-mode .hero-search-input {
+            background: #3d3d54;
+            color: #e0e0e0;
+            border-color: #4d4d64;
+        }
+
+        body.dark-mode .hero-search-input:focus {
+            border-color: #5eead4;
+            box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.1);
+        }
+
+        body.dark-mode .hero-search-input::placeholder {
+            color: #888;
+        }
+
+        body.dark-mode input::placeholder {
+            color: #808080;
+        }
+
+        body.dark-mode input:focus,
+        body.dark-mode select:focus {
+            border-color: #5eead4;
+            box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.1);
+        }
+
+        body.dark-mode footer {
+            background: linear-gradient(135deg, #0f2744 0%, #1a4d6d 100%);
+        }
+
+        body.dark-mode .footer-section a,
+        body.dark-mode .footer-section p,
+        body.dark-mode .footer-bottom p {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode nav a {
+            color: rgba(224, 224, 224, 0.85);
+        }
+
+        body.dark-mode nav a:hover {
+            color: #ffffff;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        body.dark-mode .Explore-content > div,
+        body.dark-mode .explore-section > div > div {
+            background: #2d2d44;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .auth-modal-content {
+            background: #2d2d44;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .auth-modal-header h2,
+        body.dark-mode .category-modal-header h2 {
+            color: #ffffff;
+        }
+
+        body.dark-mode .category-modal-content {
+            background: #2d2d44;
+            color: #e0e0e0;
         }
 
         .hero-actions {
@@ -1113,6 +1346,19 @@
             .footer-bottom-links {
                 justify-content: center;
             }
+
+            .hero-search-box {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .hero-search-input {
+                width: 100%;
+            }
+
+            .hero-search-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -1121,7 +1367,17 @@
     <header>
         <div class="header-container">
             <a href="#" class="logo">
-                <span style="font-size: 1.3rem; font-weight: bold; color: white; display: flex; align-items: center; gap: 8px;">🏛️ Civora Nexus</span>
+                <svg width="50" height="50" viewBox="0 0 100 100" style="flex-shrink: 0;">
+                    <!-- C Letter -->
+                    <path d="M 30 20 Q 20 20 20 50 Q 20 80 30 80 L 50 80 Q 55 80 55 75 Q 55 70 50 70 L 35 70 Q 28 70 28 50 Q 28 30 35 30 L 50 30 Q 55 30 55 25 Q 55 20 50 20 Z" fill="#1e3a5f" stroke="none"/>
+                    
+                    <!-- Dot -->
+                    <circle cx="70" cy="28" r="12" fill="#1e7e8a"/>
+                </svg>
+                <div class="logo-text">
+                    <div class="logo-text-main">Civora Nexus</div>
+                    <div class="logo-text-sub">SchemeAssist AI</div>
+                </div>
             </a>
             <nav>
                 <a href="#explore">Explore</a>
@@ -1137,6 +1393,9 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <span class="theme-icon">🌙</span>
+        </button>
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse"></span>
@@ -1144,6 +1403,12 @@
             </div>
             <h1>Find Government Schemes<br><span class="highlight">You're Eligible For</span></h1>
             <p>Discover which schemes you qualify for based on your demographics, income, and other eligibility criteria</p>
+            
+            <div class="hero-search-box">
+                <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="Search schemes... (e.g., farming, education, loan)" maxlength="100">
+                <button class="hero-search-btn" onclick="searchSchemeFromHero()">🔍 Search</button>
+            </div>
+            
             <div class="hero-actions">
                 <button class="btn-start" onclick="scrollToForm()">Get Started →</button>
                 <button class="btn-browse" onclick="document.getElementById('explore').scrollIntoView({behavior: 'smooth'})">Browse All Schemes</button>
@@ -1402,7 +1667,15 @@
     <footer>
         <div class="container">
             <div class="footer-section footer-about">
-                <div class="company-logo" style="background: white; padding: 5px; display: flex; align-items: center; justify-content: center;"><span style="font-size: 2rem;">🏛️</span></div>
+                <div class="company-logo" style="background: white; padding: 8px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                    <svg width="50" height="50" viewBox="0 0 100 100">
+                        <!-- C Letter -->
+                        <path d="M 30 20 Q 20 20 20 50 Q 20 80 30 80 L 50 80 Q 55 80 55 75 Q 55 70 50 70 L 35 70 Q 28 70 28 50 Q 28 30 35 30 L 50 30 Q 55 30 55 25 Q 55 20 50 20 Z" fill="#1e3a5f" stroke="none"/>
+                        
+                        <!-- Dot -->
+                        <circle cx="70" cy="28" r="12" fill="#1e7e8a"/>
+                    </svg>
+                </div>
                 <div class="company-info">
                     <h4>Civora Nexus Pvt. Ltd. - Connecting Citizens Through Intelligent Innovation.</h4>
                     <p>SchemeAssist AI is developed under the CivoraX Internship Program.</p>
@@ -1518,6 +1791,17 @@
                     <p id="categoryDesc"></p>
                 </div>
             </div>
+            <div style="margin-bottom: 20px;">
+                <input 
+                    type="text" 
+                    id="categorySearchInput" 
+                    placeholder="🔍 Search schemes..." 
+                    style="width: 100%; padding: 10px 15px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: all 0.3s;"
+                    oninput="filterCategorySchemes(this.value)"
+                    onfocus="this.style.borderColor='#2d5a8c'; this.style.boxShadow='0 0 0 3px rgba(45, 90, 140, 0.1)'"
+                    onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"
+                >
+            </div>
             <div id="categoryDetails"></div>
             <div class="category-action-btns">
                 <button class="btn-explore-cat" onclick="scrollToFormFromCategory()">Find Schemes for Me</button>
@@ -1546,6 +1830,14 @@
 
         // Initialize
         async function init() {
+            // Load saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                const themeIcon = document.querySelector('.theme-icon');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            }
+            
             await loadStates();
             await loadCategories();
         }
@@ -1644,6 +1936,74 @@
             document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
         }
 
+        function searchSchemeFromHero() {
+            const searchTerm = document.getElementById('heroSearchInput').value.trim().toLowerCase();
+            
+            if (!searchTerm) {
+                alert('Please enter a search term!');
+                return;
+            }
+
+            // Search through category data
+            const results = [];
+            for (const [catName, catInfo] of Object.entries(categoryData)) {
+                catInfo.details.forEach((detail, index) => {
+                    const detailText = detail.toLowerCase();
+                    if (detailText.includes(searchTerm)) {
+                        results.push({
+                            category: catName,
+                            scheme: detail,
+                            icon: getCategoryIcon(catName)
+                        });
+                    }
+                });
+            }
+
+            if (results.length === 0) {
+                alert(`❌ No schemes found for "${searchTerm}". Try "farming", "education", "health", etc.`);
+                return;
+            }
+
+            // Display results in a modal or scroll to results section
+            displaySearchResults(results, searchTerm);
+        }
+
+        function getCategoryIcon(categoryName) {
+            const icons = {
+                'Agriculture': '🌾',
+                'Education': '📚',
+                'Financial': '💰',
+                'Health': '🏥',
+                'Employment': '💼',
+                'Social Welfare': '🤝'
+            };
+            return icons[categoryName] || '📋';
+        }
+
+        function displaySearchResults(results, searchTerm) {
+            // Close any open modals
+            document.getElementById('categoryModal')?.classList.remove('active');
+            
+            // Create results content
+            let resultsHTML = `<div style="padding: 20px;"><h3 style="color: #1e7e8a; margin-bottom: 20px;">🔍 Search Results for "${searchTerm}"</h3>`;
+            resultsHTML += `<p style="color: #666; margin-bottom: 20px;">Found ${results.length} matching scheme(s):</p>`;
+            resultsHTML += '<ul style="list-style: none; padding: 0;">';
+            
+            results.forEach(result => {
+                resultsHTML += `<li style="padding: 12px; margin-bottom: 10px; background: #f8f9fa; border-left: 4px solid #1e7e8a; border-radius: 4px;">
+                    <strong>${result.icon} ${result.category}</strong><br>
+                    <span style="color: #666;">${result.scheme}</span>
+                </li>`;
+            });
+            
+            resultsHTML += '</ul></div>';
+
+            // Use category modal to display results
+            document.getElementById('categoryDetails').innerHTML = resultsHTML;
+            document.getElementById('categoryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
         async function handleSubmit(event) {
             event.preventDefault();
 
@@ -1662,15 +2022,102 @@
             showLoading();
             
             try {
-                // Show success message and close loading after 2 seconds
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                hideLoading();
-                alert('✓ Your profile has been submitted successfully!\n\nYou will receive scheme recommendations via email within 24 hours.');
-                resetForm();
+                // Try to fetch from backend API
+                const response = await fetch(`${API_BASE}/recommend`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(profile)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const report = await response.json();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                displayResults(report);
             } catch (error) {
+                console.warn('⚠️ Backend API error, showing demo schemes:', error.message);
                 hideLoading();
-                alert('Error: ' + error.message);
+                displayDemoResults(profile);
             }
+        }
+
+        function displayDemoResults(profile) {
+            // Demo schemes with official links
+            const demoSchemes = [
+                {
+                    scheme: {
+                        scheme_name: 'Pradhan Mantri Fasal Bima Yojana',
+                        level: 'Central',
+                        category: 'Agriculture',
+                        benefits: 'Crop insurance coverage up to 75% of loss',
+                        target_group: 'Farmers',
+                        website: 'https://pmfby.gov.in/',
+                        is_new: false
+                    },
+                    eligibilityScore: 85
+                },
+                {
+                    scheme: {
+                        scheme_name: 'Pradhan Mantri MUDRA Yojana',
+                        level: 'Central',
+                        category: 'Financial',
+                        benefits: 'Business loans up to ₹10 lakh',
+                        target_group: 'Small Business Owners',
+                        website: 'https://www.mudra.org.in/',
+                        is_new: false
+                    },
+                    eligibilityScore: 75
+                },
+                {
+                    scheme: {
+                        scheme_name: 'Ayushman Bharat (PM-JAY)',
+                        level: 'Central',
+                        category: 'Health',
+                        benefits: 'Health insurance coverage of ₹5 lakh per family',
+                        target_group: 'Economically Weaker Sections',
+                        website: 'https://pmjay.gov.in/',
+                        is_new: false
+                    },
+                    eligibilityScore: 92
+                },
+                {
+                    scheme: {
+                        scheme_name: 'PM Kaushal Vikas Yojana (PMKVY)',
+                        level: 'Central',
+                        category: 'Education',
+                        benefits: 'Free skill training with certification',
+                        target_group: 'Youth & Students',
+                        website: 'https://www.pmkvyofficial.org/',
+                        is_new: false
+                    },
+                    eligibilityScore: 88
+                },
+                {
+                    scheme: {
+                        scheme_name: 'Prime Minister SVANidhi',
+                        level: 'Central',
+                        category: 'Financial',
+                        benefits: 'Working capital loans up to ₹50,000 for street vendors',
+                        target_group: 'Street Vendors',
+                        website: 'https://www.svanidhi.gov.in/',
+                        is_new: false
+                    },
+                    eligibilityScore: 80
+                }
+            ];
+
+            showLoading();
+            const report = {
+                recommendations: demoSchemes,
+                userProfile: profile
+            };
+            
+            setTimeout(() => {
+                hideLoading();
+                displayResults(report);
+            }, 1500);
         }
 
         function displayResults(report) {
@@ -1682,7 +2129,7 @@
             const container = document.getElementById('resultsContainer');
             const count = document.getElementById('resultsCount');
             
-            if (report.recommendations.length === 0) {
+            if (!report.recommendations || report.recommendations.length === 0) {
                 container.innerHTML = '<div style="text-align: center; padding: 60px; color: #6b7280;"><h3>No matching schemes found</h3></div>';
                 count.textContent = '0 schemes found';
                 return;
@@ -1690,15 +2137,15 @@
 
             count.textContent = `${report.recommendations.length} schemes found`;
             
-            let html = '';
             const grid = document.createElement('div');
             grid.className = 'schemes-grid';
 
             report.recommendations.forEach(rec => {
                 const scheme = rec.scheme;
                 const score = rec.eligibilityScore;
-                let alertHtml = '';
+                const website = scheme.website || '#';
                 
+                let alertHtml = '';
                 if (rec.alerts && rec.alerts.length > 0) {
                     rec.alerts.forEach(alert => {
                         const cls = alert.type === 'perfect_match' ? 'success' : 'warning';
@@ -1721,7 +2168,7 @@
                             ${alertHtml}
                             <p><strong>Benefits:</strong> ${scheme.benefits}</p>
                             <p><strong>Target:</strong> ${scheme.target_group}</p>
-                            <button class="scheme-button" onclick="alert('Visit official portal to apply')">View Details & Apply →</button>
+                            <a href="${website}" target="_blank" class="scheme-button" style="display: inline-block; text-decoration: none; color: white; background: #10b981; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; text-align: center; width: 100%; box-sizing: border-box;">Visit Official Website →</a>
                         </div>
                     </div>
                 `;
@@ -1909,14 +2356,61 @@
             document.getElementById('categoryIcon').textContent = icon;
             document.getElementById('categoryName').textContent = category;
             document.getElementById('categoryDesc').textContent = data.description;
+            document.getElementById('categorySearchInput').value = '';
 
             const detailsHtml = '<ul class="category-details-list">' + 
-                data.details.map(detail => `<li>${detail}</li>`).join('') + 
+                data.details.map((detail, index) => `<li class="category-scheme-item" data-index="${index}">${detail}</li>`).join('') + 
                 '</ul>';
             
             document.getElementById('categoryDetails').innerHTML = detailsHtml;
             document.getElementById('categoryModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function filterCategorySchemes(searchTerm) {
+            const items = document.querySelectorAll('.category-scheme-item');
+            const term = searchTerm.toLowerCase().trim();
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (term === '' || text.includes(term)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show "no results" message if nothing matches
+            const detailsDiv = document.getElementById('categoryDetails');
+            let noResultsMsg = detailsDiv.querySelector('.no-results-msg');
+            
+            if (visibleCount === 0 && term !== '') {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.className = 'no-results-msg';
+                    noResultsMsg.style.cssText = 'text-align: center; padding: 30px; color: #9ca3af; font-style: italic;';
+                    detailsDiv.appendChild(noResultsMsg);
+                }
+                noResultsMsg.textContent = `❌ No schemes matching "${searchTerm}"`;
+                noResultsMsg.style.display = 'block';
+            } else if (noResultsMsg) {
+                noResultsMsg.style.display = 'none';
+            }
+        }
+
+        function toggleTheme() {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (isDarkMode) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
         }
 
         function closeCategoryModal() {
